@@ -11,8 +11,10 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - { name: "VS2019 Release", os: windows-latest,
-              env: { CONAN_VISUAL_VERSIONS: 16, CONAN_BUILD_TYPES: "Release" } }
+          - { name: "VS2019 x86 Release", os: windows-latest,
+              env: { CONAN_VISUAL_VERSIONS: 16, CONAN_ARCHS: x86, CONAN_BUILD_TYPES: "Release" } }
+          - { name: "VS2019 x86_64 Release", os: windows-latest,
+              env: { CONAN_VISUAL_VERSIONS: 16, CONAN_ARCHS: x86_64, CONAN_BUILD_TYPES: "Release" } }
           - { name: "MinGW x86 Release", os: windows-latest,
               env: { MINGW_CONFIGURATIONS: "8@x86@dwarf2@posix", CONAN_BUILD_TYPES: "Release" } }
           - { name: "MinGW x86_64 Release", os: windows-latest,
