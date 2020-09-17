@@ -1,3 +1,4 @@
+name: conan
 on: [push, pull_request]
 
 env:
@@ -36,4 +37,4 @@ jobs:
       - name: build
         env: ${{ matrix.config.env }}
         run: |
-          python conan-shared-scripts/build.py --shared --recipe-subdir 1.x.x openssl 1.1.1g
+          python conan-shared-scripts/build.py --shared
