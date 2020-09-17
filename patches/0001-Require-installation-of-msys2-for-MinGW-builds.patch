@@ -1,0 +1,28 @@
+From b68ac3dd3e5d8eeab6db66dcc4c913ecc7af0fe4 Mon Sep 17 00:00:00 2001
+From: Konstantin Tokarev <annulen@yandex.ru>
+Date: Thu, 17 Sep 2020 13:42:27 +0300
+Subject: [PATCH 1/1] Require installation of msys2 for MinGW builds
+
+OpenSSL requires fully functional Perl for build.
+---
+ recipes/openssl/1.x.x/conanfile.py | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/recipes/openssl/1.x.x/conanfile.py b/recipes/openssl/1.x.x/conanfile.py
+index 05d93d24..689e8633 100644
+--- a/recipes/openssl/1.x.x/conanfile.py
++++ b/recipes/openssl/1.x.x/conanfile.py
+@@ -119,8 +119,8 @@ class OpenSSLConan(ConanFile):
+             if not self.options.no_asm and not tools.which("nasm"):
+                 self.build_requires("nasm/2.14")
+         if self._win_bash:
+-            if "CONAN_BASH_PATH" not in os.environ and tools.os_info.detect_windows_subsystem() != 'msys2':
+-                self.build_requires("msys2/20190524")
++            if "CONAN_BASH_PATH" not in os.environ:
++                self.build_requires("msys2/20200517")
+ 
+     @property
+     def _is_msvc(self):
+-- 
+2.28.0
+
